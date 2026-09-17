@@ -1,7 +1,7 @@
 from doctest import UnexpectedException
 import os
 from yt_aud_load import download_youtube_audio
-from to_wav import convert_to_wav
+from to_wav_chunk import convert_to_wavchunk
 
 vid_link = input("Enter yt link : ")
 try :
@@ -17,9 +17,9 @@ output_audio = input_audio.split(".")[0]
 rmfile = False
 
 try:
-    output_format = convert_to_wav(
+    output_format = convert_to_wavchunk(
         input_audio,
-        output_audio + ".wav"
+        output_audio
     )
 
     rmfile = True
