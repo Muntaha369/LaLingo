@@ -3,8 +3,9 @@ import os
 from yt_aud_load import download_youtube_audio
 from to_wav import convert_to_wav
 
+vid_link = input("Enter yt link : ")
 try :
-    input_audio = download_youtube_audio("https://www.youtube.com/watch?v=sdkjfhksjdek")
+    input_audio = download_youtube_audio(vid_link)
 except RuntimeError as e:
     print(f"Could not download the audio {e}")
     raise SystemExit(1)
