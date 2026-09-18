@@ -50,9 +50,14 @@ def process_audio(
         "segments": results
     }
 
-result = process_audio("WnxGa1ZIILEchunk_000.wav")
+result = process_audio("../aud_processing/downloads/WnxGa1ZIILEchunk_000.wav")
 
 texts = result['segments']
 
+string_text = ""
+
 for text in texts:
     print(text['text'])
+    string_text = f"{string_text} {text["text"]}"
+
+prompt_text = string_text
