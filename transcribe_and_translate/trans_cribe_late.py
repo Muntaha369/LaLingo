@@ -50,7 +50,7 @@ def process_audio(
         "segments": results
     }
 
-result = process_audio("../aud_processing/downloads/WnxGa1ZIILEchunk_000.wav")
+result = process_audio("../aud_processing/downloads/lFeYU31TnQ8chunk_000.wav")
 
 texts = result['segments']
 
