@@ -41,4 +41,4 @@ def convert_to_wavchunk(
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"ffmpeg failed:\n{e.stderr.decode()}")
 
-    return sorted(output_dir.glob("chunk_*.wav")) #type:ignore
+    return sorted(output_dir.glob(f"{Path(output_file).name}chunk_*.wav")) #type:ignore
