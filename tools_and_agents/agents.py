@@ -1,12 +1,12 @@
 from dotenv import load_dotenv
 from langchain.agents import create_agent
-from langchain_mistralai import ChatMistralAI
+from langchain_openrouter import ChatOpenRouter
 from .tools import summarize_text, translate_text
 
 load_dotenv()
 
-model = ChatMistralAI(
-    model_name="mistral-small-latest"
+model = ChatOpenRouter(
+    model="gpt-4o-mini"
 )
 
 tools = [

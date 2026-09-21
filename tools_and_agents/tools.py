@@ -1,10 +1,12 @@
 from dotenv import load_dotenv
 from langchain.tools import tool
-from langchain_mistralai import ChatMistralAI
+from langchain_openrouter import ChatOpenRouter
 
 load_dotenv()
 
-model = ChatMistralAI(model_name="mistral-small-latest",)
+model = ChatOpenRouter(
+    model="gpt-4o-mini"
+)
 
 
 @tool
