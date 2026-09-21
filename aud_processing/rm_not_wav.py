@@ -37,6 +37,5 @@ def remove_not_wav_and_convert_wav_chunk(vid_link):
     
     return res
 
-output_files = remove_not_wav_and_convert_wav_chunk("https://www.youtube.com/watch?v=0rm7XNQJwmE")
-
-print(output_files)
+# output_files = remove_not_wav_and_convert_wav_chunk("https://www.youtube.com/watch?v=0rm7XNQJwmE")
+# print(output_files)

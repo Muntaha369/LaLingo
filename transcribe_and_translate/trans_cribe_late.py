@@ -50,14 +50,14 @@ def process_audio(
         "segments": results
     }
 
-result = process_audio("../aud_processing/downloads/lFeYU31TnQ8chunk_000.wav")
+# result = process_audio("../aud_processing/downloads/lFeYU31TnQ8chunk_000.wav")
 
-texts = result['segments']
+# texts = result['segments']
 
-string_text = ""
+# string_text = ""
 
-for text in texts:
-    print(text['text'])
-    string_text = f"{string_text} {text["text"]}"
+# for text in texts:
+#     print(text['text'])
+#     string_text = f"{string_text} {text["text"]}"
 
-prompt_text = string_text
+# prompt_text = string_text
