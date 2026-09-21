@@ -1,7 +1,7 @@
 from doctest import UnexpectedException
 import os
-from yt_aud_load import download_youtube_audio
 from to_wav_chunk import convert_to_wavchunk
+from yt_aud_load import download_youtube_audio
 
 vid_link = input("Enter yt link : ")
 try :

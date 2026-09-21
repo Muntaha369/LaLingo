@@ -1,5 +1,5 @@
-import subprocess
 from pathlib import Path
+import subprocess
 
 def convert_to_wavchunk(
     input_file: str,
