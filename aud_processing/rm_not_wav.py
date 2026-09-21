@@ -1,7 +1,7 @@
 from doctest import UnexpectedException
 import os
-from to_wav_chunk import convert_to_wavchunk
-from yt_aud_load import download_youtube_audio
+from .to_wav_chunk import convert_to_wavchunk
+from .yt_aud_load import download_youtube_audio
 
 def remove_not_wav_and_convert_wav_chunk(vid_link):
     try :
@@ -30,7 +30,7 @@ def remove_not_wav_and_convert_wav_chunk(vid_link):
     if(rmfile == True):
         os.remove(input_audio)
 
-    print("=== This is The Output Format ===")
+    # print("=== This is The Output Format ===")
     res = []
     for chunk_path in output_format:
         res.append(str(chunk_path))
