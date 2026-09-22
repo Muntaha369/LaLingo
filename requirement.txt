@@ -16,3 +16,6 @@ langchain-openrouter
 mistralai>=0.4.0
 
 rich
+
+chromadb
+sentence_transformers
