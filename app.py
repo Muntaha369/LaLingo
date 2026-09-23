@@ -2,6 +2,7 @@ from aud_processing.rm_not_wav import remove_not_wav_and_convert_wav_chunk
 from tools_and_agents.agents import agent
 from tools_and_agents.tmrr_handler import invoke_agent_with_retry
 from transcribe_and_translate.trans_cribe_late import process_audio
+from vectors.vectors import create_vector_database
 # from rich import print as rprint
 # from rich.panel import Panel
 from rich.pretty import pprint
@@ -26,6 +27,9 @@ for vid in vid_summary:
     
     for text in texts:
         string_text = f"{string_text} {text["text"]}"
+
+    res = create_vector_database(texts)
+    print(res)
     
     content.append(string_text)
 print("=== THIS IS THE CONTENT PART ===")
@@ -77,6 +81,7 @@ for transcript in summaries:
                     - Use paragraphs and headings when they improve readability.
                     - Do not add information that is not present in the provided summaries.
                     - Do not provide a preamble or explain what you did. Output only the final combined content.
+                    - If all the summaries are in a specific language then give response in that specific language
                     
                     Produce the final unified version now
         
