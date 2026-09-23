@@ -1,11 +1,9 @@
 from aud_processing.rm_not_wav import remove_not_wav_and_convert_wav_chunk
 from tools_and_agents.agents import agent
+from tools_and_agents.tmrr_handler import invoke_agent_with_retry
 from transcribe_and_translate.trans_cribe_late import process_audio
-from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
-from openrouter.errors import TooManyRequestsResponseError
-import httpx
-from rich import print as rprint
-from rich.panel import Panel
+# from rich import print as rprint
+# from rich.panel import Panel
 from rich.pretty import pprint
 
 get_prompt = input("Ask LaLingo : ")
@@ -34,15 +32,6 @@ print("=== THIS IS THE CONTENT PART ===")
 print(content)
 print("=== THIS IS THE CONTENT PART ===")
 
-@retry(
-    retry=retry_if_exception_type((TooManyRequestsResponseError, httpx.HTTPStatusError)),
-    wait=wait_exponential(multiplier=2, min=4, max=60),
-    stop=stop_after_attempt(5),
-    reraise=True
-)
-def invoke_agent_with_retry(agent, payload):
-    return agent.invoke(payload)
-
 summaries = []
 for transcript in content:
 
@@ -55,13 +44,13 @@ for transcript in content:
     
                 {transcript}
     
-                Summarize this transcript.
+                {get_prompt}
                 """
             }
         ]
     })
 
-    summaries.append(transcript)
+    summaries.append(response["messages"][-1].content)
 
 final_response = ""
 
@@ -74,8 +63,23 @@ for transcript in summaries:
                     Here is the transcript:
         
                     {summaries}
+
+                    Your task is to combine all of these summaries into ONE coherent, readable, and logically flowing document.
+                    
+                    Instructions:
+                    - Merge all summaries into a single continuous narrative.
+                    - Do NOT refer to them as "Summary 1", "Summary 2", "the first summary", "the next summary", etc.
+                    - Do NOT mention that the content came from multiple summaries.
+                    - Preserve all important information, facts, explanations, and context from the summaries.
+                    - Remove unnecessary repetition or duplicated information between summaries.
+                    - Maintain the original meaning and context.
+                    - Connect related ideas naturally so the final text reads as if it was written from the complete transcript in one pass.
+                    - Use paragraphs and headings when they improve readability.
+                    - Do not add information that is not present in the provided summaries.
+                    - Do not provide a preamble or explain what you did. Output only the final combined content.
+                    
+                    Produce the final unified version now
         
-                    {get_prompt}
                     """
                 }
             ]
