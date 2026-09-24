@@ -29,5 +29,6 @@ async def ask(item: Query):
 
     return retrive_result(query)
 
-
+#TODOS:
 # Remember to remove collections from vectorstore chroma 
+# Resolve issue in summarization
