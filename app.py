@@ -28,4 +28,6 @@ async def ask(item: Query):
     query = item.query
 
     return retrive_result(query)
-    
+
+
+# Remember to remove collections from vectorstore chroma 

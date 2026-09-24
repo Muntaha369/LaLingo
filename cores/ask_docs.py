@@ -13,12 +13,13 @@ embedding_models = MistralAIEmbeddings()
 
 vectorstore = Chroma(
     persist_directory="./chroma_db",
-    embedding_function=embedding_models
+    embedding_function=embedding_models,
+    collection_name="youtube_transcripts"
 )
 
 retriever = vectorstore.as_retriever(
     search_type="mmr",
-    search_kwargs={"k": 4, "fetch_k": 10, "lambda_mult": 0.5}
+    search_kwargs={"k": 20, "fetch_k": 50, "lambda_mult": 0.5}
 )
 
 prompt = ChatPromptTemplate.from_messages(
@@ -50,14 +51,24 @@ chain = prompt | model | StrOutputParser()
 def retrive_result(query: str):
     docs =  retriever.invoke(query)
 
+    # print(docs)
+
     if not docs:
-        return "I could not find the answer in the document."
+        return "I could not find the answer mate"
     
     context = "\n\n".join([doc.page_content for doc in docs])
 
-    return chain.invoke({ 
+    print(context)
+
+    res =  chain.invoke({ 
         "context": context, 
         "question": query
     })
 
+    print (res)
+
+    return res
+
+res = retrive_result("who is miku")
+print(res)
     
