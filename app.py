@@ -1,12 +1,15 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from cores.doc_summarizer import upload_aud
-
+from cores.ask_docs import retrive_result
 
 class Summary(BaseModel):
     vid_aud: str 
     summary: bool
     language: str | None = None
+
+class Query(BaseModel):
+    query: str
 
 
 app = FastAPI()
@@ -18,6 +21,11 @@ async def create_summary(item: Summary):
     summary = item.summary
     language = item.language
 
-    res = upload_aud(vid_aud, summary, language) #type:ignore
+    return upload_aud(vid_aud, summary, language) #type:ignore
+
+@app.post("/ask")
+async def ask(item: Query):
+    query = item.query
+
+    return retrive_result(query)
     
-    return res
