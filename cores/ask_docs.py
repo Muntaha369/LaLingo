@@ -12,7 +12,7 @@ model = ChatOpenRouter(model="gpt-4o-mini")
 embedding_models = MistralAIEmbeddings()
 
 vectorstore = Chroma(
-    persist_directory="vector_store/chroma_db",
+    persist_directory="./chroma_db",
     embedding_function=embedding_models
 )
 
