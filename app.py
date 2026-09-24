@@ -18,6 +18,6 @@ async def create_summary(item: Summary):
     summary = item.summary
     language = item.language
 
-    upload_aud(vid_aud, summary, language) #type:ignore
+    res = upload_aud(vid_aud, summary, language) #type:ignore
     
-    return item
+    return res
