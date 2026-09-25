@@ -50,7 +50,7 @@ def create_vector_database(segments):
         documents=chunks,
         embedding=embeddings,
         persist_directory="./chroma_db",
-        collection_name="youtube_transcripts"
+        # collection_name="youtube_transcripts"
     )
 
     return vectorstore

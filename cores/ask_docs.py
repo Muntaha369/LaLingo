@@ -14,7 +14,7 @@ embedding_models = MistralAIEmbeddings()
 vectorstore = Chroma(
     persist_directory="./chroma_db",
     embedding_function=embedding_models,
-    collection_name="youtube_transcripts"
+    # collection_name="youtube_transcripts"
 )
 
 retriever = vectorstore.as_retriever(

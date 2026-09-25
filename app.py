@@ -21,6 +21,9 @@ async def create_summary(item: Summary):
     summary = item.summary
     language = item.language
 
+    if language == None:
+        return  upload_aud(vid_aud, summary)
+    
     return upload_aud(vid_aud, summary, language) #type:ignore
 
 @app.post("/ask")

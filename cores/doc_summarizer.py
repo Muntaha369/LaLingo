@@ -100,8 +100,8 @@ def get_summaries(content, language):
     
         final_response = response
     
-    # print("=== THIS IS THE RESPONSE ===")
-    # pprint(final_response, expand_all=True)
-    # print("=== THIS IS THE RESPONSE ===")
+    print("=== THIS IS THE RESPONSE ===")
+    pprint(final_response, expand_all=True)
+    print("=== THIS IS THE RESPONSE ===")
 
     return final_response
