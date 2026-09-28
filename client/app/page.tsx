@@ -9,13 +9,35 @@ import LanguageSuggestions from "@/components/LanguageSuggestions";
 import SummarizeCard from "@/components/SummarizeCard";
 import ProcessButton from "@/components/ProcessButton";
 import BottomStatusBar from "@/components/BottomStatusBar";
+import axios from "axios";
+
+async function sendPost() {
+  try {
+    const response = await axios.post("http://localhost:8000/ask", {
+      query: "Muntaha",
+    });
+
+    console.log("Status:", response.status);
+    console.log("Data:", response.data);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        console.error("Error:", error.response.status, error.response.data);
+      } else {
+        console.error("Request failed:", error.message);
+      }
+    } else {
+      console.error("Unexpected error:", error);
+    }
+  }
+}
 
 const YT = /^(https?:\/\/)?(www\.|m\.)?(youtube\.com\/(watch\?v=|shorts\/|embed\/)|youtu\.be\/)[\w-]{6,}/i;
 
 export default function Page() {
   const [url, setUrl] = useState("");
   const [language, setLanguage] = useState("");
-  const [summarize, setSummarize] = useState(true);
+  const [summarize, setSummarize] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,8 +75,8 @@ export default function Page() {
         <LogoHeader />
         <div className="mt-8 flex flex-col gap-5 md:mt-9 md:gap-6 lg:mt-12 lg:gap-7">
           <UrlInput value={url} onChange={(v) => { setUrl(v); setError(null); }} error={error} />
-          <TranslateInput value={language} onChange={setLanguage} />
-          <LanguageSuggestions onSelect={setLanguage} />
+          <TranslateInput value={language} onChange={setLanguage} disabled={!summarize} />
+          <LanguageSuggestions onSelect={setLanguage} disabled={!summarize} />
           <SummarizeCard checked={summarize} onChange={setSummarize} />
           <ProcessButton loading={loading} onClick={process} />
           <BottomStatusBar />
