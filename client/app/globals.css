@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+html, body { background: #0d0d0f; color: #f4f4f6; min-height: 100%; }
+body { font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
