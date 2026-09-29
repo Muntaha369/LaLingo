@@ -7,7 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
-model = ChatOpenRouter(model="gpt-4o-mini")
+model = ChatOpenRouter(model="openrouter/free")
 
 embedding_models = MistralAIEmbeddings()
 
@@ -69,6 +69,6 @@ def retrive_result(query: str):
 
     return res
 
-res = retrive_result("who is miku")
-print(res)
+# res = retrive_result("who is miku")
+# print(res)
     

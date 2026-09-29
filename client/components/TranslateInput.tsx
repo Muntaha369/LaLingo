@@ -4,12 +4,12 @@ interface Props { value: string; onChange: (v: string) => void; disabled?: boole
 
 export default function TranslateInput({ value, onChange, disabled = false }: Props) {
   return (
-    <section className={disabled ? "opacity-75 pointer-events-none" : ""}>
+    <section className={`transition-opacity duration-200 ${disabled ? "opacity-75 pointer-events-none" : "opacity-100"}`}>
       <div className="flex items-center justify-between px-[2px]">
-        <label htmlFor="lang" className={`flex items-center gap-2 font-mono text-[14px] font-medium lg:text-[15px] ${disabled ? "text-muted" : "text-white"}`}>
-          <Languages className={`h-4 w-4 ${disabled ? "text-muted" : "text-cyan"}`} /> Translate
+        <label htmlFor="lang" className={`flex items-center gap-2 font-mono text-[14px] font-medium lg:text-[15px] ${disabled ? "text-muted" : "text-white"} transition-colors duration-200`}>
+          <Languages className={`h-4 w-4 ${disabled ? "text-muted" : "text-cyan"} transition-colors duration-200`} /> Translate
         </label>
-        <span className={`font-mono text-[12px] lg:text-[13px] ${disabled ? "text-muted" : "text-muted"}`}>Auto-detecting src</span>
+        <span className={`font-mono text-[12px] lg:text-[13px] ${disabled ? "text-muted" : "text-muted"} transition-colors duration-200`}>Auto-detecting src</span>
       </div>
       <div className="mt-3 flex h-[52px] md:h-[56px] lg:h-[60px] items-center rounded-xl border border-line bg-surface px-4 lg:px-5">
         <input
@@ -20,7 +20,7 @@ export default function TranslateInput({ value, onChange, disabled = false }: Pr
           className="w-full bg-transparent text-[15px] text-white outline-none lg:text-[16px] placeholder:text-dim"
           disabled={disabled}
         />
-        <Globe className={`h-5 w-5 shrink-0 ${disabled ? "text-muted" : "text-dim"}`} />
+        <Globe className={`h-5 w-5 shrink-0 ${disabled ? "text-muted" : "text-dim"} transition-colors duration-200`} />
       </div>
     </section>
   );

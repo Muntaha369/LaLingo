@@ -5,7 +5,7 @@ from langchain_openrouter import ChatOpenRouter
 load_dotenv()
 
 model = ChatOpenRouter(
-    model="gpt-4o-mini"
+    model="openrouter/free"
 )
 
 

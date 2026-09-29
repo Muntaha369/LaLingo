@@ -6,7 +6,7 @@ from .tools import summarize_text, translate_text
 load_dotenv()
 
 model = ChatOpenRouter(
-    model="gpt-4o-mini"
+    model="openrouter/free"
 )
 
 tools = [

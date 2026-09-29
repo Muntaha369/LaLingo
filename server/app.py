@@ -2,6 +2,17 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from cores.doc_summarizer import upload_aud
 from cores.ask_docs import retrive_result
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # frontend URLs
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Summary(BaseModel):
     vid_aud: str 
@@ -12,19 +23,19 @@ class Query(BaseModel):
     query: str
 
 
-app = FastAPI()
-
-
 @app.post("/summaries/")
 async def create_summary(item: Summary):
     vid_aud = item.vid_aud
     summary = item.summary
     language = item.language
 
-    if language == None:
-        return  upload_aud(vid_aud, summary)
+    if language is None:
+            res = upload_aud(vid_aud, summary)
+    else:
+        res = upload_aud(vid_aud, summary, language)  # type: ignore
+
+    return {"response": res["messages"][-1].content} #type:ignore
     
-    return upload_aud(vid_aud, summary, language) #type:ignore
 
 @app.post("/ask")
 async def ask(item: Query):
