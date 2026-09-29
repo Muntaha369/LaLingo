@@ -5,7 +5,7 @@ import "./globals.css";
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
-export const metadata: Metadata = { title: "LaLingo", description: "Translate and summarize videos with AI" };
+export const metadata: Metadata = { title: "VidWise", description: "Translate and summarize videos with AI" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
